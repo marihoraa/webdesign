@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Posto Chama Viva — Energia que Move o Brasil</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --vermelho: #cc1111;
+  --vermelho-escuro: #8b0000;
+  --vermelho-vivo: #e82222;
+  --branco: #ffffff;
+  --cinza-claro: #f5f5f5;
+  --cinza-medio: #e0e0e0;
+  --preto-suave: #1a1a1a;
+  --texto-cinza: #555;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: 'Barlow', sans-serif; background: var(--branco); overflow-x: hidden; }
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-thumb { background: var(--vermelho); border-radius: 3px; }
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(12px);
+  border-bottom: 3px solid var(--vermelho);
+  padding: 0 60px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo-posto {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.chama-svg {
+  font-size: 2rem;
+  animation: chama 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes chama {
+  from { transform: rotate(-4deg) scale(1); }
+  to { transform: rotate(4deg) scale(1.05); }
+}
+
+.logo-posto h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.7rem;
+  color: var(--vermelho);
+  letter-spacing: 0.06em;
+  line-height: 1;
+}
+
+.logo-posto h1 span {
+  display: block;
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.55rem;
+  font-weight: 600;
+  color: var(--preto-suave);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-menu a {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--preto-suave);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.nav-menu a:hover { color: var(--vermelho); }
+
+.btn-nav {
+  background: var(--vermelho) !important;
+  color: var(--branco) !important;
+  padding: 10px 24px;
+  border-radius: 6px;
+  transition: background 0.2s !important;
+}
+
+.btn-nav:hover { background: var(--vermelho-escuro) !important; }
+
+.hero {
+  min-height: 100vh;
+  background: var(--preto-suave);
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding-top: 72px;
+}
+
+.hero-bg-listras {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    -55deg,
+    transparent,
+    transparent 60px,
+    rgba(204,17,17,0.07) 60px,
+    rgba(204,17,17,0.07) 62px
+  );
+}
+
+.hero-blob {
+  position: absolute;
+  right: -100px;
+  top: -100px;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle at 60% 40%, rgba(204,17,17,0.35) 0%, transparent 65%);
+  border-radius: 50%;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  padding: 0 60px;
+  max-width: 1300px;
+  width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.hero-texto { animation: entrar 0.8s ease-out both; }
+
+@keyframes entrar {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.tag-hero {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(204,17,17,0.15);
+  border: 1px solid rgba(204,17,17,0.4);
+  color: #ff6b6b;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 2px;
+  margin-bottom: 28px;
+}
+
+.hero-texto h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 5.5rem;
+  color: var(--branco);
+  line-height: 0.92;
+  letter-spacing: 0.02em;
+  margin-bottom: 24px;
+}
+
+.hero-texto h2 .destaque {
+  color: var(--vermelho-vivo);
+  display: block;
+}
+
+.hero-texto p {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.75;
+  max-width: 480px;
+  margin-bottom: 40px;
+  font-weight: 300;
+}
+
+.hero-botoes {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn-primario {
+  background: var(--vermelho);
+  color: var(--branco);
+  border: none;
+  padding: 15px 34px;
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.btn-primario:hover { background: var(--vermelho-vivo); transform: translateY(-2px); }
+
+.btn-secundario {
+  background: transparent;
+  color: var(--branco);
+  border: 2px solid rgba(255,255,255,0.3);
+  padding: 15px 34px;
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.btn-secundario:hover { border-color: var(--vermelho); background: rgba(204,17,17,0.1); }
+
+.hero-numeros {
+  display: flex;
+  gap: 40px;
+  margin-top: 52px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.hero-num-item {}
+
+.hero-num-valor {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.6rem;
+  color: var(--vermelho-vivo);
+  line-height: 1;
+}
+
+.hero-num-texto {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+.hero-card-combustivel {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: 36px;
+  backdrop-filter: blur(6px);
+  animation: entrar 0.8s 0.2s ease-out both;
+}
+
+.card-tit {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.combustivel-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.combustivel-item:last-child { border-bottom: none; }
+
+.comb-esq {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.comb-circulo {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+
+.comb-nome {
+  font-weight: 600;
+  color: var(--branco);
+  font-size: 0.95rem;
+}
+
+.comb-tipo {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.4);
+  margin-top: 2px;
+}
+
+.comb-preco {
+  text-align: right;
+}
+
+.preco-valor {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.7rem;
+  color: var(--branco);
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.preco-unid {
+  font-size: 0.68rem;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.06em;
+}
+
+.atualizado {
+  margin-top: 20px;
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.3);
+  text-align: center;
+}
+
+.secao-missao-visao {
+  background: var(--cinza-claro);
+  padding: 100px 60px;
+}
+
+.mv-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.mv-cabecalho {
+  text-align: center;
+  margin-bottom: 72px;
+}
+
+.etiqueta-secao {
+  display: inline-block;
+  background: var(--vermelho);
+  color: var(--branco);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 6px 18px;
+  margin-bottom: 20px;
+}
+
+.mv-cabecalho h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3.2rem;
+  color: var(--preto-suave);
+  letter-spacing: 0.04em;
+}
+
+.mv-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 28px;
+}
+
+.mv-card {
+  background: var(--branco);
+  border-radius: 4px;
+  padding: 40px 36px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.mv-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(204,17,17,0.12);
+}
+
+.mv-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--vermelho);
+}
+
+.mv-icone {
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.mv-card h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.8rem;
+  color: var(--vermelho);
+  letter-spacing: 0.06em;
+  margin-bottom: 14px;
+}
+
+.mv-card p {
+  font-size: 0.9rem;
+  color: var(--texto-cinza);
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+.mv-numero-fundo {
+  position: absolute;
+  bottom: -20px;
+  right: -10px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 8rem;
+  color: rgba(204,17,17,0.05);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+.secao-sla {
+  background: var(--vermelho-escuro);
+  padding: 80px 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+.secao-sla::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 80px,
+    rgba(255,255,255,0.03) 80px,
+    rgba(255,255,255,0.03) 81px
+  );
+}
+
+.sla-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.sla-cabecalho {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  margin-bottom: 60px;
+}
+
+.sla-cabecalho h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3rem;
+  color: var(--branco);
+  letter-spacing: 0.04em;
+  line-height: 1.05;
+}
+
+.sla-cabecalho p {
+  color: rgba(255,255,255,0.65);
+  line-height: 1.8;
+  font-size: 0.95rem;
+  font-weight: 300;
+}
+
+.sla-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.sla-item {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 6px;
+  padding: 30px 24px;
+  text-align: center;
+  transition: background 0.2s;
+}
+
+.sla-item:hover { background: rgba(255,255,255,0.12); }
+
+.sla-icone { font-size: 2rem; margin-bottom: 14px; }
+
+.sla-meta {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.6rem;
+  color: var(--branco);
+  letter-spacing: 0.04em;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.sla-titulo {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.sla-desc {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+.secao-servicos {
+  padding: 100px 60px;
+  background: var(--branco);
+}
+
+.srv-inner { max-width: 1200px; margin: 0 auto; }
+
+.srv-cabecalho {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 56px;
+}
+
+.srv-cabecalho h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3rem;
+  color: var(--preto-suave);
+  letter-spacing: 0.04em;
+}
+
+.srv-cabecalho h2 small {
+  display: block;
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--vermelho);
+  margin-bottom: 6px;
+}
+
+.srv-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.srv-card {
+  border: 2px solid var(--cinza-medio);
+  border-radius: 4px;
+  padding: 30px;
+  transition: border-color 0.2s, transform 0.2s;
+  cursor: default;
+}
+
+.srv-card:hover {
+  border-color: var(--vermelho);
+  transform: translateY(-3px);
+}
+
+.srv-card:hover .srv-bola { background: var(--vermelho); }
+
+.srv-bola {
+  width: 48px;
+  height: 48px;
+  background: var(--cinza-claro);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  margin-bottom: 18px;
+  transition: background 0.2s;
+}
+
+.srv-card h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--preto-suave);
+  margin-bottom: 10px;
+  letter-spacing: 0.02em;
+}
+
+.srv-card p {
+  font-size: 0.84rem;
+  color: var(--texto-cinza);
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+.secao-cta {
+  background: var(--vermelho);
+  padding: 80px 60px;
+  text-align: center;
+}
+
+.secao-cta h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3.5rem;
+  color: var(--branco);
+  letter-spacing: 0.04em;
+  margin-bottom: 16px;
+}
+
+.secao-cta p {
+  color: rgba(255,255,255,0.8);
+  font-size: 1rem;
+  margin-bottom: 36px;
+  font-weight: 300;
+}
+
+.cta-botoes {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+.btn-cta-branco {
+  background: var(--branco);
+  color: var(--vermelho);
+  border: none;
+  padding: 16px 40px;
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.btn-cta-branco:hover { background: #f0f0f0; transform: translateY(-2px); }
+
+.btn-cta-outline {
+  background: transparent;
+  color: var(--branco);
+  border: 2px solid rgba(255,255,255,0.5);
+  padding: 16px 40px;
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.btn-cta-outline:hover { background: rgba(255,255,255,0.1); }
+
+footer {
+  background: var(--preto-suave);
+  padding: 60px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+}
+
+.footer-sobre h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  color: var(--vermelho-vivo);
+  letter-spacing: 0.06em;
+  margin-bottom: 12px;
+}
+
+.footer-sobre p {
+  font-size: 0.84rem;
+  color: rgba(255,255,255,0.4);
+  line-height: 1.8;
+  font-weight: 300;
+  max-width: 280px;
+}
+
+.footer-col h5 {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 18px;
+}
+
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+.footer-col ul a {
+  font-size: 0.84rem;
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  transition: color 0.2s;
+  font-weight: 300;
+}
+
+.footer-col ul a:hover { color: var(--vermelho-vivo); }
+
+.footer-rodape {
+  background: #111;
+  padding: 16px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.74rem;
+  color: rgba(255,255,255,0.25);
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo-posto">
+    <div class="chama-svg">🔥</div>
+    <h1>CHAMA VIVA
+      <span>Postos & Serviços</span>
+    </h1>
+  </div>
+  <ul class="nav-menu">
+    <li><a href="#">Início</a></li>
+    <li><a href="#">Combustíveis</a></li>
+    <li><a href="#">Serviços</a></li>
+    <li><a href="#">Unidades</a></li>
+    <li><a href="#">Sobre nós</a></li>
+    <li><a href="#" class="btn-nav">Encontrar Posto</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg-listras"></div>
+  <div class="hero-blob"></div>
+  <div class="hero-inner">
+    <div class="hero-texto">
+      <div class="tag-hero">🔥 Energia que move o Brasil</div>
+      <h2>Abasteça com<br>quem você<br><span class="destaque">confia.</span></h2>
+      <p>O Posto Chama Viva está presente em cada estrada, cada cidade. Combustível de qualidade, atendimento rápido e serviços completos para você chegar longe.</p>
+      <div class="hero-botoes">
+        <button class="btn-primario">Encontrar Unidade</button>
+        <button class="btn-secundario">Conheça nossos planos</button>
+      </div>
+      <div class="hero-numeros">
+        <div class="hero-num-item">
+          <div class="hero-num-valor">47</div>
+          <div class="hero-num-texto">Unidades no Brasil</div>
+        </div>
+        <div class="hero-num-item">
+          <div class="hero-num-valor">24h</div>
+          <div class="hero-num-texto">Atendimento diário</div>
+        </div>
+        <div class="hero-num-item">
+          <div class="hero-num-valor">98%</div>
+          <div class="hero-num-texto">Satisfação dos clientes</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-card-combustivel">
+      <div class="card-tit">⛽ Preços de Hoje — Recife, PE</div>
+
+      <div class="combustivel-item">
+        <div class="comb-esq">
+          <div class="comb-circulo" style="background:rgba(255,200,0,0.15);">🟡</div>
+          <div>
+            <div class="comb-nome">Gasolina Comum</div>
+            <div class="comb-tipo">87 Octanas</div>
+          </div>
+        </div>
+        <div class="comb-preco">
+          <div class="preco-valor">R$ 6,29</div>
+          <div class="preco-unid">por litro</div>
+        </div>
+      </div>
+
+      <div class="combustivel-item">
+        <div class="comb-esq">
+          <div class="comb-circulo" style="background:rgba(255,100,0,0.15);">🔶</div>
+          <div>
+            <div class="comb-nome">Gasolina Aditivada</div>
+            <div class="comb-tipo">91 Octanas — Premium</div>
+          </div>
+        </div>
+        <div class="comb-preco">
+          <div class="preco-valor">R$ 6,89</div>
+          <div class="preco-unid">por litro</div>
+        </div>
+      </div>
+
+      <div class="combustivel-item">
+        <div class="comb-esq">
+          <div class="comb-circulo" style="background:rgba(50,200,100,0.15);">🟢</div>
+          <div>
+            <div class="comb-nome">Etanol</div>
+            <div class="comb-tipo">Combustível renovável</div>
+          </div>
+        </div>
+        <div class="comb-preco">
+          <div class="preco-valor">R$ 4,59</div>
+          <div class="preco-unid">por litro</div>
+        </div>
+      </div>
+
+      <div class="combustivel-item">
+        <div class="comb-esq">
+          <div class="comb-circulo" style="background:rgba(50,100,255,0.15);">🔵</div>
+          <div>
+            <div class="comb-nome">Diesel S10</div>
+            <div class="comb-tipo">Alta performance</div>
+          </div>
+        </div>
+        <div class="comb-preco">
+          <div class="preco-valor">R$ 6,12</div>
+          <div class="preco-unid">por litro</div>
+        </div>
+      </div>
+
+      <div class="atualizado">🕐 Atualizado em 06/05/2026 às 08:00</div>
+    </div>
+  </div>
+</section>
+
+<section class="secao-missao-visao">
+  <div class="mv-inner">
+    <div class="mv-cabecalho">
+      <div class="etiqueta-secao">Quem somos</div>
+      <h2>Nossos Valores Fundamentais</h2>
+    </div>
+    <div class="mv-grid">
+      <div class="mv-card">
+        <span class="mv-icone">🎯</span>
+        <h3>Missão</h3>
+        <p>Oferecer combustíveis de excelência e serviços automotivos com agilidade, honestidade e segurança — sendo o posto de referência em cada comunidade onde atuamos, gerando valor para clientes, colaboradores e para o Brasil.</p>
+        <div class="mv-numero-fundo">01</div>
+      </div>
+      <div class="mv-card">
+        <span class="mv-icone">🔭</span>
+        <h3>Visão</h3>
+        <p>Ser a maior rede de postos de combustíveis do Nordeste até 2030, reconhecida pela inovação no atendimento, pela adoção de energias limpas e por ser um ambiente que as pessoas escolhem não apenas para abastecer, mas para parar.</p>
+        <div class="mv-numero-fundo">02</div>
+      </div>
+      <div class="mv-card">
+        <span class="mv-icone">💎</span>
+        <h3>Valores</h3>
+        <p>Transparência nos preços e no atendimento. Responsabilidade ambiental em cada operação. Comprometimento com a segurança dos colaboradores e clientes. Inovação contínua nos serviços. Respeito às comunidades locais.</p>
+        <div class="mv-numero-fundo">03</div>
+      </div>
+    </div>
+  </div>
+</section>
