@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portal do Professor — Colégio Horizonte</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --verde-escuro: #1a3a2a;
+  --verde-medio: #2d6a4f;
+  --verde-claro: #52b788;
+  --dourado: #c9a84c;
+  --dourado-claro: #e8c96e;
+  --creme: #faf8f2;
+  --cinza-texto: #3d3d3d;
+  --branco: #ffffff;
+  --sombra: 0 4px 24px rgba(26,58,42,0.12);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--creme);
+  color: var(--cinza-texto);
+  min-height: 100vh;
+}
+
+.barra-topo {
+  background: var(--verde-escuro);
+  color: var(--creme);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  padding: 8px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.barra-topo span { opacity: 0.75; }
+.barra-topo a { color: var(--dourado-claro); text-decoration: none; }
+
+nav {
+  background: var(--branco);
+  padding: 0 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 76px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo-nav {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.logo-icone {
+  width: 46px;
+  height: 46px;
+  background: linear-gradient(135deg, var(--verde-medio), var(--verde-escuro));
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  color: var(--dourado-claro);
+  font-size: 1.4rem;
+  font-weight: 900;
+}
+
+.logo-texto h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  color: var(--verde-escuro);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.logo-texto span {
+  font-size: 0.68rem;
+  color: var(--verde-claro);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.nav-links {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--cinza-texto);
+  font-size: 0.88rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: color 0.2s;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--verde-claro);
+  transition: width 0.25s;
+}
+
+.nav-links a:hover { color: var(--verde-medio); }
+.nav-links a:hover::after { width: 100%; }
+
+.btn-acesso {
+  background: var(--verde-medio);
+  color: var(--branco) !important;
+  padding: 9px 22px;
+  border-radius: 8px;
+  transition: background 0.2s !important;
+}
+
+.btn-acesso:hover { background: var(--verde-escuro) !important; }
+.btn-acesso::after { display: none !important; }
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 0;
+  min-height: 520px;
+  overflow: hidden;
+}
+
+.hero-conteudo {
+  background: linear-gradient(135deg, var(--verde-escuro) 0%, var(--verde-medio) 100%);
+  padding: 80px 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-conteudo::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 300px;
+  height: 300px;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 50%;
+}
+
+.hero-conteudo::after {
+  content: '';
+  position: absolute;
+  bottom: -80px;
+  left: 40px;
+  width: 200px;
+  height: 200px;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 50%;
+}
+
+.badge-boas-vindas {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(201,168,76,0.2);
+  border: 1px solid rgba(201,168,76,0.4);
+  color: var(--dourado-claro);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 20px;
+  margin-bottom: 28px;
+  width: fit-content;
+}
+
+.badge-boas-vindas span { font-size: 0.9rem; }
+
+.hero-conteudo h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  color: var(--branco);
+  line-height: 1.15;
+  font-weight: 900;
+  margin-bottom: 20px;
+}
+
+.hero-conteudo h2 em {
+  font-style: normal;
+  color: var(--dourado-claro);
+}
+
+.hero-conteudo p {
+  color: rgba(255,255,255,0.72);
+  font-size: 1rem;
+  line-height: 1.7;
+  max-width: 520px;
+  margin-bottom: 36px;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 36px;
+}
+
+.stat { text-align: left; }
+
+.stat-numero {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--dourado-claro);
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* ── LOGIN ── */
+.hero-login {
+  background: var(--branco);
+  padding: 56px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: -8px 0 40px rgba(0,0,0,0.08);
+}
+
+.login-saudacao {
+  font-size: 0.78rem;
+  color: var(--verde-claro);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.hero-login h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  color: var(--verde-escuro);
+  margin-bottom: 6px;
+}
+
+.hero-login > p {
+  font-size: 0.85rem;
+  color: #888;
+  margin-bottom: 32px;
+}
+
+.campo-grupo { margin-bottom: 20px; }
+
+.campo-grupo label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--verde-escuro);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.campo-grupo input {
+  width: 100%;
+  padding: 13px 16px;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.92rem;
+  color: var(--cinza-texto);
+  background: #fafafa;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+
+.campo-grupo input:focus {
+  border-color: var(--verde-claro);
+  box-shadow: 0 0 0 3px rgba(82,183,136,0.12);
+  background: var(--branco);
+}
+
+.campo-grupo input::placeholder { color: #c0c0c0; }
+
+.opcoes-login {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.lembrar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: #666;
+  cursor: pointer;
+}
+
+.lembrar input[type="checkbox"] { accent-color: var(--verde-claro); }
+
+.esqueceu {
+  font-size: 0.82rem;
+  color: var(--verde-claro);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.esqueceu:hover { text-decoration: underline; }
+
+.btn-entrar {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, var(--verde-medio), var(--verde-escuro));
+  color: var(--branco);
+  border: none;
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-entrar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0);
+  transition: background 0.2s;
+}
+
+.btn-entrar:hover { opacity: 0.92; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,58,42,0.25); }
+.btn-entrar:active { transform: translateY(0); }
+
+/* Estado de loading no botão */
+.btn-entrar.carregando { pointer-events: none; opacity: 0.75; }
+.btn-entrar.carregando::before {
+  content: '';
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255,255,255,0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: girar 0.6s linear infinite;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+@keyframes girar { to { transform: rotate(360deg); } }
+
+.divisor-login {
+  text-align: center;
+  color: #bbb;
+  font-size: 0.78rem;
+  margin: 20px 0;
+  position: relative;
+}
+
+.divisor-login::before, .divisor-login::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 38%;
+  height: 1px;
+  background: #e8e8e8;
+}
+
+.divisor-login::before { left: 0; }
+.divisor-login::after { right: 0; }
+
+.acesso-rapido {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.btn-acesso-rapido {
+  padding: 10px;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 9px;
+  background: var(--branco);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.78rem;
+  color: #555;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: border-color 0.2s, background 0.2s, transform 0.15s;
+}
+
+.btn-acesso-rapido:hover { border-color: var(--verde-claro); background: #f0fdf4; transform: translateY(-1px); }
+
+/* Toast de erro */
+.toast-erro {
+  display: none;
+  background: #fff5f5;
+  border: 1px solid #fecaca;
+  border-left: 4px solid #ef4444;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 0.82rem;
+  color: #b91c1c;
+  margin-bottom: 16px;
+  animation: surgir 0.25s ease;
+}
+
+.toast-erro.visivel { display: block; }
+
+@keyframes surgir {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── MÓDULOS ── */
+.secao-modulos {
+  padding: 80px 48px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.titulo-secao {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 48px;
+}
+
+.titulo-secao h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: var(--verde-escuro);
+  font-weight: 700;
+}
+
+.titulo-secao h2 span {
+  display: block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--verde-claro);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.ver-todos {
+  font-size: 0.82rem;
+  color: var(--verde-claro);
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: gap 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ver-todos:hover { gap: 8px; }
+
+.grid-modulos {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.card-modulo {
+  background: var(--branco);
+  border-radius: 16px;
+  padding: 28px 24px;
+  box-shadow: var(--sombra);
+  border: 1px solid rgba(0,0,0,0.04);
+  cursor: pointer;
+  transition: transform 0.25s, box-shadow 0.25s;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-modulo::after {
+  content: 'Abrir →';
+  position: absolute;
+  bottom: 16px;
+  right: 20px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--verde-claro);
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 0.2s, transform 0.2s;
+  letter-spacing: 0.05em;
+}
+
+.card-modulo:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(26,58,42,0.14);
+}
+
+.card-modulo:hover::after { opacity: 1; transform: translateX(0); }
+
+.icone-modulo {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 18px;
+  transition: transform 0.2s;
+}
+
+.card-modulo:hover .icone-modulo { transform: scale(1.1) rotate(-3deg); }
+
+.card-modulo h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  color: var(--verde-escuro);
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.card-modulo p {
+  font-size: 0.82rem;
+  color: #888;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.tag-modulo {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+/* ── AGENDA ── */
+.secao-agenda {
+  background: var(--verde-escuro);
+  padding: 72px 48px;
+}
+
+.agenda-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.agenda-titulo h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: var(--branco);
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.agenda-titulo p {
+  color: rgba(255,255,255,0.6);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.lista-eventos { display: flex; flex-direction: column; gap: 16px; }
+
+.evento {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-left: 3px solid var(--dourado);
+  border-radius: 10px;
+  padding: 18px 20px;
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 16px;
+  align-items: center;
+  transition: background 0.2s, transform 0.2s;
+  cursor: default;
+}
+
+.evento:hover { background: rgba(255,255,255,0.1); transform: translateX(4px); }
+
+.evento-data {
+  text-align: center;
+  border-right: 1px solid rgba(255,255,255,0.12);
+  padding-right: 16px;
+}
+
+.evento-dia {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  color: var(--dourado-claro);
+  font-weight: 900;
+  line-height: 1;
+}
+
+.evento-mes {
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.evento-info h5 {
+  color: var(--branco);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.evento-info p {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.5);
+}
+
+/* ── AVISOS ── */
+.secao-avisos {
+  padding: 80px 48px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.grid-avisos {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+}
+
+.aviso-principal {
+  background: linear-gradient(135deg, var(--verde-medio), var(--verde-escuro));
+  border-radius: 20px;
+  padding: 36px;
+  color: var(--branco);
+  position: relative;
+  overflow: hidden;
+}
+
+.aviso-principal::after {
+  content: '!';
+  position: absolute;
+  right: -10px;
+  top: -20px;
+  font-family: 'Playfair Display', serif;
+  font-size: 12rem;
+  font-weight: 900;
+  color: rgba(255,255,255,0.04);
+  line-height: 1;
+}
+
+.aviso-badge {
+  background: var(--dourado);
+  color: var(--verde-escuro);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 18px;
+}
+
+.aviso-principal h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+}
+
+.aviso-principal p {
+  font-size: 0.88rem;
+  opacity: 0.8;
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.btn-aviso {
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: var(--branco);
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.btn-aviso:hover { background: rgba(255,255,255,0.25); transform: translateY(-1px); }
+
+.lista-avisos-sec { display: flex; flex-direction: column; gap: 14px; }
+
+.aviso-item {
+  background: var(--branco);
+  border: 1px solid #eee;
+  border-radius: 12px;
+  padding: 18px 20px;
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+
+.aviso-item:hover {
+  border-color: var(--verde-claro);
+  transform: translateX(4px);
+  box-shadow: 0 4px 16px rgba(26,58,42,0.08);
+}
+
+.aviso-item-tipo {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.aviso-item h5 {
+  font-size: 0.88rem;
+  color: var(--verde-escuro);
+  margin-bottom: 4px;
+}
+
+.aviso-item span {
+  font-size: 0.72rem;
+  color: #aaa;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--verde-escuro);
+  padding: 48px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+}
+
+.footer-marca h3 {
+  font-family: 'Playfair Display', serif;
+  color: var(--branco);
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.footer-marca p {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.7;
+  max-width: 260px;
+}
+
+.footer-col h5 {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dourado-claro);
+  margin-bottom: 16px;
+}
+
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+.footer-col ul a {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  transition: color 0.2s, padding-left 0.2s;
+  display: inline-block;
+}
+
+.footer-col ul a:hover { color: rgba(255,255,255,0.9); padding-left: 4px; }
+
+.footer-rodape {
+  background: rgba(0,0,0,0.25);
+  text-align: center;
+  padding: 16px 48px;
+  font-size: 0.74rem;
+  color: rgba(255,255,255,0.3);
+}
+
+/* ── MICRO-ANIMAÇÕES ── */
+@keyframes pulsar {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+
+.tag-modulo { animation: pulsar 3s ease-in-out infinite; }
+
+/* Indicador de digitação no campo */
+.campo-grupo input:focus + .hint-campo { display: block; }
+.hint-campo {
+  display: none;
+  font-size: 0.72rem;
+  color: var(--verde-claro);
+  margin-top: 5px;
+}
+</style>
+</head>
+<body>
+
+<div class="barra-topo">
+  <span>📍 Av. Educação, 1500 — Recife, PE</span>
+  <span>📞 (81) 3000-4567 &nbsp;|&nbsp; <a href="#">secretaria@horizonte.edu.br</a> &nbsp;|&nbsp; Ano Letivo 2026</span>
+</div>
+
+<nav>
+  <div class="logo-nav">
+    <div class="logo-icone">H</div>
+    <div class="logo-texto">
+      <h1>Colégio Horizonte</h1>
+      <span>Portal do Educador</span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#">Início</a></li>
+    <li><a href="#">Diário de Classe</a></li>
+    <li><a href="#">Planos de Aula</a></li>
+    <li><a href="#">Comunicados</a></li>
+    <li><a href="#">Precisa de ajuda?</a></li>
+    <li><a href="#" class="btn-acesso">Minha Conta</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-conteudo">
+    <div class="badge-boas-vindas"><span>✦</span> Bom dia, professor(a)!</div>
+    <h2>Sua sala de aula<br>começa <em>aqui.</em></h2>
+    <p>Tudo que você precisa para o seu dia — diários, planos de aula, recados da coordenação — num lugar só, sem complicação.</p>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-numero">148</div>
+        <div class="stat-label">Professores ativos</div>
+      </div>
+      <div class="stat">
+        <div class="stat-numero">2.340</div>
+        <div class="stat-label">Alunos matriculados</div>
+      </div>
+      <div class="stat">
+        <div class="stat-numero">98%</div>
+        <div class="stat-label">Frequência no mês</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-login">
+    <p class="login-saudacao">Seja bem-vindo(a) 👋</p>
+    <h3>Entrar no Portal</h3>
+    <p>Use seu e-mail ou matrícula institucional</p>
+
+    <div class="toast-erro" id="toastErro">
+      😕 Não foi dessa vez — verifique seu e-mail e senha e tente novamente.
+    </div>
+
+    <div class="campo-grupo">
+      <label>Matrícula ou E-mail</label>
+      <input type="text" placeholder="prof.nome@horizonte.edu.br" id="campoEmail">
+      <span class="hint-campo">Pode usar sua matrícula também 😊</span>
+    </div>
+
+    <div class="campo-grupo">
+      <label>Senha</label>
+      <input type="password" placeholder="••••••••••" id="campoSenha">
+      <span class="hint-campo">Mínimo 8 caracteres</span>
+    </div>
+
+    <div class="opcoes-login">
+      <label class="lembrar">
+        <input type="checkbox"> Continuar conectado
+      </label>
+      <a href="#" class="esqueceu">Esqueceu a senha?</a>
+    </div>
+
+    <button class="btn-entrar" id="btnEntrar" onclick="tentarEntrar()">Entrar no Portal →</button>
+
+    <div class="divisor-login">ou acesse com</div>
+
+    <div class="acesso-rapido">
+      <button class="btn-acesso-rapido">🔐 Gov.br</button>
+      <button class="btn-acesso-rapido">📱 Autenticador</button>
+    </div>
+  </div>
+</section>
+
+<section class="secao-modulos">
+  <div class="titulo-secao">
+    <h2>
+      <span>O que você precisa hoje</span>
+      Módulos do Portal
+    </h2>
+    <a href="#" class="ver-todos">Ver todos os módulos →</a>
+  </div>
+
+  <div class="grid-modulos">
+    <a class="card-modulo" href="#">
+      <div class="icone-modulo" style="background:#e8f5e9;">📒</div>
+      <h4>Diário de Classe</h4>
+      <p>Presença, notas e ocorrências — tudo por turma. Bem simples, bem rápido.</p>
+      <span class="tag-modulo" style="background:#e8f5e9;color:#2d6a4f;">Atualizado hoje</span>
+    </a>
+    <a class="card-modulo" href="#">
+      <div class="icone-modulo" style="background:#fff8e1;">📋</div>
+      <h4>Planos de Aula</h4>
+      <p>Crie, edite e envie seus planos para aprovação da coordenação em minutos.</p>
+      <span class="tag-modulo" style="background:#fff8e1;color:#c9a84c;">3 aguardando você</span>
+    </a>
+    <a class="card-modulo" href="#">
+      <div class="icone-modulo" style="background:#e3f2fd;">📊</div>
+      <h4>Boletins</h4>
+      <p>Lance notas bimestrais com calma — o bimestre está aberto até dia 18.</p>
+      <span class="tag-modulo" style="background:#e3f2fd;color:#1565c0;">Bimestre aberto</span>
+    </a>
+    <a class="card-modulo" href="#">
+      <div class="icone-modulo" style="background:#fce4ec;">📢</div>
+      <h4>Comunicados</h4>
+      <p>Novidades da direção, da coordenação e da secretaria, sem perder nada.</p>
+      <span class="tag-modulo" style="background:#fce4ec;color:#c62828;">2 não lidos</span>
+    </a>
+    <a class="card-modulo" href="#">
+      <div class="icone-modulo" style="background:#f3e5f5;">📚</div>
+      <h4>Biblioteca Digital</h4>
+      <p>480 títulos à disposição — materiais, apostilas e recursos multimídia.</p>
+      <span class="tag-modulo" style="background:#f3e5f5;color:#6a1b9a;">480 títulos</span>
+    </a>
+    <a class="card-modulo" href="#">
+      <div class="icone-modulo" style="background:#e0f7fa;">🗓️</div>
+      <h4>Agenda Escolar</h4>
+      <p>Reuniões, eventos e datas — para você se organizar com tranquilidade.</p>
+      <span class="tag-modulo" style="background:#e0f7fa;color:#00838f;">Ver agenda</span>
+    </a>
+    <a class="card-modulo" href="#">
+      <div class="icone-modulo" style="background:#fbe9e7;">💬</div>
+      <h4>Mensagens</h4>
+      <p>Fale com responsáveis, colegas e a equipe gestora sem sair do portal.</p>
+      <span class="tag-modulo" style="background:#fbe9e7;color:#bf360c;">12 novas mensagens</span>
+    </a>
+    <a class="card-modulo" href="#">
+      <div class="icone-modulo" style="background:#f9fbe7;">🏆</div>
+      <h4>Formação Docente</h4>
+      <p>Cursos e trilhas pensados especialmente para o seu crescimento profissional.</p>
+      <span class="tag-modulo" style="background:#f9fbe7;color:#827717;">✨ Novidade</span>
+    </a>
+  </div>
+</section>
+
+<section class="secao-agenda">
+  <div class="agenda-inner">
+    <div class="agenda-titulo">
+      <h2>O que vem por aí</h2>
+      <p>Fique de olho nas datas importantes. A gente organiza, você aproveita cada momento com os alunos sem surpresa no calendário.</p>
+    </div>
+    <div class="lista-eventos">
+      <div class="evento">
+        <div class="evento-data">
+          <div class="evento-dia">12</div>
+          <div class="evento-mes">Maio</div>
+        </div>
+        <div class="evento-info">
+          <h5>Conselho de Classe — Ensino Médio</h5>
+          <p>Sala de reuniões — Bloco B — 14h</p>
+        </div>
+      </div>
+      <div class="evento">
+        <div class="evento-data">
+          <div class="evento-dia">18</div>
+          <div class="evento-mes">Maio</div>
+        </div>
+        <div class="evento-info">
+          <h5>Prazo: Avaliações do 1º Bimestre</h5>
+          <p>Sistema encerra às 18h — não deixe para a última hora 😉</p>
+        </div>
+      </div>
+      <div class="evento">
+        <div class="evento-data">
+          <div class="evento-dia">23</div>
+          <div class="evento-mes">Maio</div>
+        </div>
+        <div class="evento-info">
+          <h5>Reunião de Pais e Mestres</h5>
+          <p>Auditório Principal — 19h às 21h</p>
+        </div>
+      </div>
+      <div class="evento">
+        <div class="evento-data">
+          <div class="evento-dia">30</div>
+          <div class="evento-mes">Maio</div>
+        </div>
+        <div class="evento-info">
+          <h5>Formação Pedagógica — BNCC</h5>
+          <p>Obrigatório para todos os docentes — vamos juntos!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="secao-avisos">
+  <div class="titulo-secao">
+    <h2>
+      <span>Fique por dentro</span>
+      Quadro de Avisos
+    </h2>
+  </div>
+  <div class="grid-avisos">
+    <div class="aviso-principal">
+      <div class="aviso-badge">🔔 Atenção, professor(a)!</div>
+      <h3>Lançamento de notas do 1º Bimestre</h3>
+      <p>O sistema fica disponível até <strong>18 de maio de 2026</strong>. Depois disso, vai precisar pedir liberação para a secretaria com justificativa — e a gente sabe que ninguém quer passar por isso. Lança antes, fica tranquilo(a) 😊</p>
+      <button class="btn-aviso">Acessar o Diário de Notas →</button>
+    </div>
+    <div class="lista-avisos-sec">
+      <div class="aviso-item">
+        <div class="aviso-item-tipo" style="color:#2d6a4f;">📅 Calendário</div>
+        <h5>Semana Pedagógica — Junho 2026</h5>
+        <span>Publicado em 02/05/2026</span>
+      </div>
+      <div class="aviso-item">
+        <div class="aviso-item-tipo" style="color:#c9a84c;">📄 Administrativo</div>
+        <h5>Ponto eletrônico — novo aplicativo disponível</h5>
+        <span>Publicado em 01/05/2026</span>
+      </div>
+      <div class="aviso-item">
+        <div class="aviso-item-tipo" style="color:#1565c0;">📚 Pedagógico</div>
+        <h5>Novos materiais de apoio na biblioteca</h5>
+        <span>Publicado em 28/04/2026</span>
+      </div>
+      <div class="aviso-item">
+        <div class="aviso-item-tipo" style="color:#c62828;">🚨 Aviso</div>
+        <h5>Manutenção do sistema — sábado, 10/05</h5>
+        <span>Publicado em 27/04/2026</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-marca">
+    <h3>Colégio Horizonte</h3>
+    <p>Formando cidadãos desde 1987. Um espaço de aprendizado real, feito por pessoas que acreditam no poder da educação.</p>
+  </div>
+  <div class="footer-col">
+    <h5>Portal</h5>
+    <ul>
+      <li><a href="#">Diário de Classe</a></li>
+      <li><a href="#">Planos de Aula</a></li>
+      <li><a href="#">Boletins</a></li>
+      <li><a href="#">Biblioteca</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h5>Institucional</h5>
+    <ul>
+      <li><a href="#">Sobre a Escola</a></li>
+      <li><a href="#">Equipe Gestora</a></li>
+      <li><a href="#">Projeto Político</a></li>
+      <li><a href="#">Notícias</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h5>Precisa de ajuda?</h5>
+    <ul>
+      <li><a href="#">Central de Ajuda</a></li>
+      <li><a href="#">Fale com a TI</a></li>
+      <li><a href="#">Privacidade</a></li>
+      <li><a href="#">Termos de Uso</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-rodape">© 2026 Colégio Horizonte — Feito com carinho para os educadores que fazem a diferença.</div>
+
+<script>
+function tentarEntrar() {
+  const btn = document.getElementById('btnEntrar');
+  const toast = document.getElementById('toastErro');
+  const email = document.getElementById('campoEmail').value;
+  const senha = document.getElementById('campoSenha').value;
+
+  toast.classList.remove('visivel');
+
+  if (!email || !senha) {
+    toast.textContent = '👀 Parece que você esqueceu de preencher algum campo.';
+    toast.classList.add('visivel');
+    return;
+  }
+
+  btn.textContent = 'Entrando...';
+  btn.classList.add('carregando');
+  btn.disabled = true;
+
+  setTimeout(() => {
+    btn.textContent = 'Entrar no Portal →';
+    btn.classList.remove('carregando');
+    btn.disabled = false;
+    // Simulação: se quiser mostrar sucesso, basta redirecionar ou mudar o estado aqui
+  }, 1800);
+}
+</script>
+</body>
+</html>
